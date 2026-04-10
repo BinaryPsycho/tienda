@@ -261,6 +261,10 @@ function irAPaso1() {
   paso('paso1','paso2','paso3',0);
 }
 
+var COIN_SYMBOLS = {
+  btc: 'BTCUSDT', sol: 'SOLUSDT', bnb: 'BNBUSDT', ltc: 'LTCUSDT', trx: 'TRXUSDT'
+};
+
 function elegirMoneda(id) {
   monedaActual = id;
   document.querySelectorAll('.coin-btn').forEach(function(b){ b.classList.remove('selected'); });
@@ -271,19 +275,19 @@ function elegirMoneda(id) {
   document.getElementById('cbLabel').textContent    = 'Envia ' + coin.name + ' (' + coin.net + ')';
   document.getElementById('cryptoAddr').textContent = addr;
   document.getElementById('qrImg').src = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + encodeURIComponent(addr);
-  if (!coin.cg) {
+  if (!COIN_SYMBOLS[id]) {
     document.getElementById('cbAmount').textContent = '4.99 ' + coin.name;
     document.getElementById('cbUsd').textContent    = 'Envia exactamente 4.99 ' + coin.name + ' (' + coin.net + ')';
     return;
   }
   document.getElementById('cbAmount').textContent = 'Calculando...';
   document.getElementById('cbUsd').textContent    = 'Obteniendo precio en tiempo real...';
-  if (precioCache[coin.cg]) { mostrarPrecio(coin, precioCache[coin.cg]); return; }
-  fetch('https://api.coincap.io/v2/assets/' + coin.cg)
+  if (precioCache[id]) { mostrarPrecio(coin, precioCache[id]); return; }
+  fetch('https://api.binance.com/api/v3/ticker/price?symbol=' + COIN_SYMBOLS[id])
     .then(function(r){ return r.json(); })
     .then(function(d){
-      var p = d.data && parseFloat(d.data.priceUsd);
-      if(p){ precioCache[coin.cg]=p; mostrarPrecio(coin,p); }
+      var p = d.price && parseFloat(d.price);
+      if(p){ precioCache[id]=p; mostrarPrecio(coin,p); }
       else { document.getElementById('cbAmount').textContent='4.99 USD en '+coin.name;
              document.getElementById('cbUsd').textContent='Calcula en coinmarketcap.com'; }
     })
