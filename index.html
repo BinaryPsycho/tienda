@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis Libros Digitales - Alberto</title>
+<title>Tienda Digital</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#1a1a2e;--paper:#faf8f3;--cream:#f0ead6;--gold:#c9a84c;--gold-light:#e8d5a3;--text:#2d2d2d;--muted:#7a7065;--crypto:#f7931a;}
@@ -117,7 +117,7 @@ footer a{color:var(--gold);text-decoration:none;}
   </div>
 </main>
 
-<footer>&copy; 2025 Alberto &middot; <a href="mailto:albertogarridohernandez@gmail.com">Contacto</a></footer>
+<footer>&copy; 2026 Tienda Digital &middot; <a href="mailto:albertgwi2021@gmail.com">Contacto</a></footer>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
@@ -139,14 +139,14 @@ footer a{color:var(--gold);text-decoration:none;}
       <div id="paso1">
         <div class="form-group">
           <label>Tu nombre</label>
-          <input type="text" id="nombre" placeholder="Maria Garcia">
+          <input type="text" id="nombre" placeholder="Juan Garcia">
         </div>
         <div class="form-group">
           <label>Email</label>
           <input type="email" id="email" placeholder="tu@correo.com">
         </div>
         <button class="btn-buy gold" id="btnContinuar">Continuar al pago &rarr;</button>
-        <div class="note">&#128231; Recibiras el libro en tu correo tras confirmar el pago.</div>
+        <div class="note">&#128231; Recibirás el libro en tu correo tras confirmar el pago.</div>
       </div>
 
       <div id="paso2" class="hidden">
@@ -163,16 +163,16 @@ footer a{color:var(--gold);text-decoration:none;}
           </div>
           <div class="crypto-timer"><span class="timer-dot"></span> Esperando pago</div>
         </div>
-        <button class="btn-buy" style="background:#27ae60" id="btnConfirmar">&#10003; Ya envie el pago</button>
-        <div class="note cn">Envia exactamente el monto indicado. Verificaremos el pago y enviaremos el libro a tu email.</div>
+        <button class="btn-buy" style="background:#27ae60" id="btnConfirmar">&#10003; Ya envié el pago</button>
+        <div class="note cn">Envía exactamente el monto indicado, luego pulsa el botón verde para confirmar el envío. Verificaremos el pago y enviaremos el libro a tu email.</div>
         <button class="btn-back" id="btnVolver">&larr; Volver</button>
       </div>
 
       <div id="paso3" class="hidden">
         <div style="text-align:center;padding:14px 0 6px;">
           <div style="width:60px;height:60px;background:#e8f8ee;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:26px;">&#9989;</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--ink);margin-bottom:8px;">Pago en verificacion</h3>
-          <p style="font-size:13px;color:var(--muted);line-height:1.6;">Recibimos tu notificacion de pago.<br>Tan pronto lo verifiquemos,<br>recibirás el libro en<br><strong id="successEmail">--</strong></p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--ink);margin-bottom:8px;">Pago en verificación</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;">Recibimos tu notificación de pago.<br>Tan pronto lo verifiquemos,<br>recibirás el libro en<br><strong id="successEmail">--</strong></p>
           <p style="margin-top:10px;font-size:12px;color:#aaa;">Tiempo estimado: menos de 24 horas.</p>
         </div>
       </div>
@@ -252,7 +252,7 @@ function irAPago() {
   var nombre = document.getElementById('nombre').value.trim();
   var email  = document.getElementById('email').value.trim();
   if (!nombre) { alert('Por favor ingresa tu nombre.'); return; }
-  if (!email || email.indexOf('@') < 0) { alert('Por favor ingresa un email valido.'); return; }
+  if (!email || email.indexOf('@') < 0) { alert('Por favor ingresa un email válido.'); return; }
   paso('paso2','paso1','paso3',1);
   elegirMoneda('btc');
 }
@@ -272,12 +272,12 @@ function elegirMoneda(id) {
   if(btn) btn.classList.add('selected');
   var coin = COINS.find(function(c){ return c.id===id; });
   var addr = WALLETS[id] || '--';
-  document.getElementById('cbLabel').textContent    = 'Envia ' + coin.name + ' (' + coin.net + ')';
+  document.getElementById('cbLabel').textContent    = 'Envía ' + coin.name + ' (' + coin.net + ')';
   document.getElementById('cryptoAddr').textContent = addr;
   document.getElementById('qrImg').src = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + encodeURIComponent(addr);
   if (!COIN_SYMBOLS[id]) {
     document.getElementById('cbAmount').textContent = '4.99 ' + coin.name;
-    document.getElementById('cbUsd').textContent    = 'Envia exactamente 4.99 ' + coin.name + ' (' + coin.net + ')';
+    document.getElementById('cbUsd').textContent    = 'Envía exactamente 4.99 ' + coin.name + ' (' + coin.net + ')';
     return;
   }
   document.getElementById('cbAmount').textContent = 'Calculando...';
@@ -315,7 +315,7 @@ function copiarDireccion() {
       btn.textContent = 'Copiar';
       btn.style.background = 'rgba(255,255,255,.1)';
       btn.style.color = 'rgba(255,255,255,.6)';
-    }, 2500);
+    }, 100);
   }).catch(function(){
     var ta = document.createElement('textarea');
     ta.value = addr; document.body.appendChild(ta); ta.select();
@@ -327,7 +327,7 @@ function copiarDireccion() {
       btn.textContent = 'Copiar';
       btn.style.background = 'rgba(255,255,255,.1)';
       btn.style.color = 'rgba(255,255,255,.6)';
-    }, 2500);
+    }, 100);
   });
 }
 
@@ -350,11 +350,11 @@ function confirmarPago() {
     document.getElementById('successEmail').textContent = email;
     paso('paso3','paso2','paso1',2);
     btn.disabled = false;
-    btn.innerHTML = '&#10003; Ya envie el pago';
+    btn.innerHTML = '&#10003; Ya envié el pago';
   }).catch(function(e){
     btn.disabled = false;
-    btn.innerHTML = '&#10003; Ya envie el pago';
-    alert('Error enviando confirmacion: ' + JSON.stringify(e));
+    btn.innerHTML = '&#10003; Ya envié el pago';
+    alert('Error enviando confirmación: ' + JSON.stringify(e));
   });
 }
 
