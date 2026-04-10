@@ -117,7 +117,7 @@ footer a{color:var(--gold);text-decoration:none;}
   </div>
 </main>
 
-<footer>&copy; 2025 Alberto &middot; <a href="mailto:albertogarridohernandez@gmail.com">Contacto</a></footer>
+<footer>&copy; 2025 Alberto &middot; <a href="/cdn-cgi/l/email-protection#cfaea3adaabdbba0a8aebdbda6aba0a7aabda1aea1abaab58fa8a2aea6a3e1aca0a2">Contacto</a></footer>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
@@ -180,7 +180,7 @@ footer a{color:var(--gold);text-decoration:none;}
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var WALLETS = {
   btc:     'bc1q39q7w5re4v0yck5l2eg6qeujvah8s2tmjrd0v0',
   sol:     'BKbF55mesqP1hsvHnqs9NrcoeUKK7FKj1QcoNrv5BPhu',
@@ -308,7 +308,7 @@ function copiarDireccion() {
   var addr = document.getElementById('cryptoAddr').textContent;
   var btn  = document.getElementById('btnCopiar');
   navigator.clipboard.writeText(addr).then(function(){
-    btn.textContent = '&#10003; Copiado!';
+    btn.textContent = 'Copiado!';
     btn.style.background = '#27ae60';
     btn.style.color = '#fff';
     setTimeout(function(){
@@ -320,7 +320,7 @@ function copiarDireccion() {
     var ta = document.createElement('textarea');
     ta.value = addr; document.body.appendChild(ta); ta.select();
     document.execCommand('copy'); document.body.removeChild(ta);
-    btn.textContent = '&#10003; Copiado!';
+    btn.textContent = 'Copiado!';
     btn.style.background = '#27ae60';
     btn.style.color = '#fff';
     setTimeout(function(){
@@ -376,8 +376,4 @@ document.getElementById('btnCerrar').addEventListener('click',   cerrarModal);
 document.getElementById('btnContinuar').addEventListener('click',irAPago);
 document.getElementById('btnConfirmar').addEventListener('click',confirmarPago);
 document.getElementById('btnVolver').addEventListener('click',   irAPaso1);
-document.getElementById('btnCopiar').addEventListener('click',   copiarDireccion);
-document.getElementById('modalOverlay').addEventListener('click',function(e){ if(e.target===this) cerrarModal(); });
-</script>
-</body>
-</html>
+document.getElementById('btnCopiar').addEventListener('click',
