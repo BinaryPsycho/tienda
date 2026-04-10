@@ -184,10 +184,20 @@ footer a{color:var(--gold);text-decoration:none;}
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-emailjs.init('o0ENj_NaH_fc_YRoh');
-
+// EmailJS via fetch directo - sin eval
+function enviarEmail(params) {
+  return fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      service_id:  'service_5o03qes',
+      template_id: 'template_syt0e0o',
+      user_id:     'o0ENj_NaH_fc_YRoh',
+      template_params: params
+    })
+  });
+}
 // Event listeners
 document.getElementById('btnComprar').addEventListener('click', abrirModal);
 document.getElementById('btnCerrar').addEventListener('click', cerrarModal);
@@ -362,7 +372,7 @@ function confirmarPago() {
   var coin   = COINS.find(function(c){ return c.id === monedaActual; });
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Enviando...';
-  emailjs.send('service_5o03qes', 'template_syt0e0o', {
+  enviarEmail({
     to_name:       nombre,
     to_email:      email,
     book_title:    'Spanish Language Learning for Beginners',
