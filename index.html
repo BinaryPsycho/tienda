@@ -394,9 +394,9 @@ function confirmarPago() {
       template_params: {
         to_name:    nombre,
         to_email:   email,
-        book_title: 'Spanish Language Learning for Beginners',
-        price:      '4.99 USD (' + monto + ')',
-        pay_method: coin.name + ' (' + coin.net + ')'
+       book_title: window.libroActual.titulo,
+price:      window.libroActual.precio + ' USD (' + monto + ')',
+pay_method: coin.name + ' (' + coin.net + ')'
       }
     })
   });
