@@ -310,8 +310,8 @@ function elegirMoneda(id) {
   document.getElementById('cryptoAddr').textContent = addr;
   document.getElementById('qrImg').src = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + encodeURIComponent(addr);
   if (!COIN_SYMBOLS[id]) {
-    document.getElementById('cbAmount').textContent = '4.99 ' + coin.name;
-    document.getElementById('cbUsd').textContent    = 'Envía exactamente 4.99 ' + coin.name + ' (' + coin.net + ')';
+    document.getElementById('cbAmount').textContent = window.libroActual.precio + ' ' + coin.name;
+    document.getElementById('cbUsd').textContent = 'Envía exactamente ' + window.libroActual.precio + ' ' + coin.name + ' (' + coin.net + ')';
     return;
   }
   document.getElementById('cbAmount').textContent = 'Calculando...';
@@ -332,7 +332,7 @@ function elegirMoneda(id) {
 }
 
 function mostrarPrecio(coin, usdPrice) {
-  var amount = 4.99 / usdPrice;
+  var amount = parseFloat(window.libroActual.precio) / usdPrice;
   var dec = coin.id==='btc' ? 8 : coin.id==='ltc' ? 6 : 4;
   document.getElementById('cbAmount').textContent = amount.toFixed(dec) + ' ' + coin.name;
   document.getElementById('cbUsd').textContent    = 'Equivalente a $4.99 USD al tipo de cambio actual';
