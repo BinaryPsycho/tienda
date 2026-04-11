@@ -212,7 +212,7 @@ var json = JSON.parse(clean);
         grid.appendChild(card);
       });
     })
-    .catch(function(){ console.error('Error cargando libros'); });
+    .catch(function(e){ console.error('Error cargando libros', e); });
 }
 cargarLibros();
 var WALLETS = {
