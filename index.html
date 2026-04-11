@@ -175,7 +175,8 @@ function cargarLibros() {
   fetch(url)
     .then(function(r){ return r.text(); })
     .then(function(text){
-      var json = JSON.parse(text.substring(47).slice(0,-2));
+      var clean = text.replace('/*O_o*/', '').replace('google.visualization.Query.setResponse(', '').slice(0,-2);
+var json = JSON.parse(clean);
       var grid = document.getElementById('booksGrid');
       grid.innerHTML = '';
       var filas = json.table.rows;
