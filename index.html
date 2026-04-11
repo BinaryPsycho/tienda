@@ -171,14 +171,16 @@ footer a{color:var(--gold);text-decoration:none;}
 <script>
 var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRyGzwgi0kZyfT8xLfKOo2tOf1VK_VXra-M-bljTv9-UPfMr6uRDIICfxwhdRLjfMoGhvSZafDAQy12/pub?gid=0&single=true&output=tsv';
 function cargarLibros() {
-  var url = 'https://sheets.googleapis.com/v4/spreadsheets/1VlXypHIfsJVcUljrpp1IIUKPTEko1R2T4kA2untuKqo/values/libros?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY';
+  var url = 'https://corsproxy.io/?https://docs.google.com/spreadsheets/d/1VlXypHIfsJVcUljrpp1IIUKPTEko1R2T4kA2untuKqo/gviz/tq?tqx=out:json&sheet=libros';
   fetch(url)
-    .then(function(r){ return r.json(); })
-    .then(function(data){
+    .then(function(r){ return r.text(); })
+    .then(function(text){
+      var json = JSON.parse(text.substring(47).slice(0,-2));
       var grid = document.getElementById('booksGrid');
       grid.innerHTML = '';
-      var filas = data.values.slice(1);
-      filas.forEach(function(cols){
+      var filas = json.table.rows;
+      filas.forEach(function(row){
+        var cols = row.c.map(function(c){ return c ? String(c.v||'') : ''; });
         var titulo      = cols[0] || '';
         var descripcion = cols[1] || '';
         var precio      = cols[2] || '';
@@ -419,7 +421,6 @@ COINS.forEach(function(c) {
 });
 
 // Event listeners - al final para que las funciones ya esten definidas
-document.getElementById('btnComprar').addEventListener('click',  abrirModal);
 document.getElementById('btnCerrar').addEventListener('click',   cerrarModal);
 document.getElementById('btnContinuar').addEventListener('click',irAPago);
 document.getElementById('btnConfirmar').addEventListener('click',confirmarPago);
