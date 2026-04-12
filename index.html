@@ -214,8 +214,32 @@ var json = JSON.parse(clean);
           window.libroActual = { titulo: btn.dataset.titulo, precio: btn.dataset.precio, descarga: btn.dataset.descarga };
           abrirModal();
         });
-        grid.appendChild(card);
+     grid.appendChild(card);
       });
+
+      // DEMO CARD — se inserta de primero después de cargar los libros
+      var demoCard = document.createElement('div');
+      demoCard.className = 'book-card demo-card';
+      demoCard.innerHTML =
+        '<div class="cover-wrap">' +
+          '<div style="width:100%;height:100%;background:linear-gradient(135deg,#020c1e,#0d2a5a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;text-align:center;">' +
+            '<div style="font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:3px;color:#c9a84c;text-transform:uppercase;">BinaryPsycho</div>' +
+            '<div style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:700;color:#fff;line-height:1.2;">Domina tu Mente,<br><em style="color:#4a9eff;">Domina el Mercado</em></div>' +
+            '<div style="font-size:11px;color:rgba(255,255,255,.45);font-style:italic;">Psicología del Trader</div>' +
+            '<div style="width:40px;height:1px;background:#c9a84c;opacity:.5;"></div>' +
+            '<div style="font-size:10px;color:rgba(255,255,255,.3);">Capítulo 1 · Demo gratuito</div>' +
+          '</div>' +
+          '<span class="badge-digital" style="background:#27ae60;">DEMO</span>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<span class="demo-label">★ Demo gratuito</span>' +
+          '<div class="book-title">Psicotrading — Domina tu Mente, Domina el Mercado</div>' +
+          '<div class="book-desc">Prueba el Capítulo 1 completo gratis. Descubre cómo se ve un libro interactivo — no es un PDF. Navega, explora y aprende desde cualquier dispositivo.</div>' +
+          '<div class="demo-free">GRATIS <span style="font-size:.75rem;color:var(--muted);font-weight:400;">· sin registro</span></div>' +
+          '<a class="btn-buy demo-btn" href="https://BinaryPsycho.github.io/BinaryPsycho-psicotrading-demo" target="_blank" rel="noopener">&#128214; Abrir demo ahora →</a>' +
+        '</div>';
+      grid.insertBefore(demoCard, grid.firstChild);
+
     })
     .catch(function(e){ console.error('Error cargando libros', e); });
 }
