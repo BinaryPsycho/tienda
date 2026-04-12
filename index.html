@@ -79,13 +79,18 @@ main{max-width:1100px;margin:0 auto;padding:60px 24px 80px;}
 .hidden{display:none;}
 footer{text-align:center;padding:30px;border-top:1px solid var(--cream);font-size:12px;color:var(--muted);}
 footer a{color:var(--gold);text-decoration:none;}
+.btn-buy.demo-btn{background:transparent;color:var(--gold);border:2px solid var(--gold);font-weight:600;text-decoration:none;display:block;width:100%;margin-top:12px;padding:12px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;text-align:center;transition:all .2s;}
+.btn-buy.demo-btn:hover{background:var(--gold);color:#fff;}
+.book-card.demo-card{border:2px solid var(--gold);}
+.demo-free{font-size:1.3rem;font-weight:700;color:#27ae60;margin-top:6px;}
+.demo-label{display:inline-block;background:linear-gradient(135deg,#c9a84c,#a8832a);color:#fff;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-bottom:4px;}
 </style>
 </head>
 <body>
 
 <header>
   <div class="store-badge">&#128218; Tienda Digital</div>
-  <h1>Libros que <em>transforman</em></h1>
+ <h1>Libros interactivos que<br><em>transforman tu mente</em></h1>
   <p class="subtitle">Descarga inmediata &middot; Entrega por email &middot; Pago seguro</p>
   <div class="pay-badges">
     <span class="pay-badge">&#8383; BTC</span>
@@ -215,6 +220,31 @@ var json = JSON.parse(clean);
     .catch(function(e){ console.error('Error cargando libros', e); });
 }
 cargarLibros();
+(function(){
+  var grid = document.getElementById('booksGrid');
+  var card = document.createElement('div');
+  card.className = 'book-card demo-card';
+  card.innerHTML =
+    '<div class="cover-wrap">' +
+      '<div style="width:100%;height:100%;background:linear-gradient(135deg,#020c1e,#0d2a5a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;text-align:center;">' +
+        '<div style="font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:3px;color:#c9a84c;text-transform:uppercase;">BinaryPsycho</div>' +
+        '<div style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:700;color:#fff;line-height:1.2;">Domina tu Mente,<br><em style="color:#4a9eff;">Domina el Mercado</em></div>' +
+        '<div style="font-size:11px;color:rgba(255,255,255,.45);font-style:italic;">Psicología del Trader</div>' +
+        '<div style="width:40px;height:1px;background:#c9a84c;opacity:.5;"></div>' +
+        '<div style="font-size:10px;color:rgba(255,255,255,.3);">Capítulo 1 · Demo gratuito</div>' +
+      '</div>' +
+      '<span class="badge-digital" style="background:#27ae60;">DEMO</span>' +
+    '</div>' +
+    '<div class="card-body">' +
+      '<span class="demo-label">★ Demo gratuito</span>' +
+      '<div class="book-title">Psicotrading — Domina tu Mente, Domina el Mercado</div>' +
+      '<div class="book-desc">Prueba el Capítulo 1 completo gratis. Descubre cómo se ve un libro interactivo — no es un PDF. Navega, explora y aprende desde cualquier dispositivo.</div>' +
+      '<div class="demo-free">GRATIS <span style="font-size:.75rem;color:var(--muted);font-weight:400;">· sin registro</span></div>' +
+      '<a class="btn-buy demo-btn" href="https://BinaryPsycho.github.io/BinaryPsycho-psicotrading-demo" target="_blank" rel="noopener">&#128214; Abrir demo ahora →</a>' +
+    '</div>';
+  if(grid.firstChild) grid.insertBefore(card, grid.firstChild);
+  else grid.appendChild(card);
+})();
 var WALLETS = {
   btc:     'bc1q39q7w5re4v0yck5l2eg6qeujvah8s2tmjrd0v0',
   sol:     'BKbF55mesqP1hsvHnqs9NrcoeUKK7FKj1QcoNrv5BPhu',
